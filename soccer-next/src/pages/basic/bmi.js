@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState} from "react"
 
 export default function Bmi () {
     const [inputs, setInputs] = useState({}) // 세 개로 나뉜 것을 JSON({})으로 합침
