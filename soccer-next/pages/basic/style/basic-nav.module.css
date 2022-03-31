@@ -1,0 +1,14 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: lavender;
+}
+
+.ul {
+    padding-right: 70px;
+}
+
+.li {
+    display: inline;
+    margin-left: 40px;
+}

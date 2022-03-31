@@ -1,0 +1,1 @@
+// export {default as boardlist} from 'board/components/board-list'
