@@ -1,76 +1,86 @@
-import React, {useState} from "react";
+import React, {useState} from "react"
 import style from "board/style/board-form.module.css"
 
 export default function TeamForm(){
     const [inputs, setInputs] = useState({})
-    const {passengerId, name, teamId, subject} = inputs;
+    const {teamId, regionName, teamName, origYyyy, stadiumName, address, tel} = inputs
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         e.preventDefault()
-        const {name, value} = e.target;
-        setInputs({...inputs, [name] : value})   
+        const {name, value} = e.target
+        setInputs({...inputs, [name] : value})
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-        alert(`등록할 게시글 : ${JSON.stringify(subject)}`)
+        const dataset = {teamId, regionName, teamName, origYyyy, stadiumName, address, tel}
+        alert(`등록할 팀 정보 : ${JSON.stringify(dataset)}`)
     }
-    
+
     return (<>
-        <h1>게시글 등록</h1>
         <div className={style.container}>
-            <htmlForm action="">
+            <form action="">
                 <div className={style.row}>
                     <div className={style.col25}>
-                        <label className={style.label} htmlFor="passengerId">게시글 작성자 ID</label>
+                        <label className={style.label} htmlFor="teamId">팀 ID</label>
                     </div>
                     <div className={style.col75}>
-                        <input className={style.inputText} type="text" id="passengerId" name="passengerId" placeholder="게시글 작성자 ID 입력" onChange={handleChange}/>
+                        <input className={style.inputText} type="text" id="teamId" name="teamId" onChange={handleChange}/>
                     </div>
                 </div>
                 <div className={style.row}>
                     <div className={style.col25}>
-                        <label htmlFor="name">게시글 작성자 이름</label>
+                        <label className={style.label} htmlFor="regionName">연고지</label>
                     </div>
                     <div className={style.col75}>
-                        <input className={style.inputText} type="text" id="name" name="name" placeholder="게시글 작성자 이름 입력" onChange={handleChange}/>
+                        <input className={style.inputText} type="text" id="regionName" name="regionName" onChange={handleChange}/>
                     </div>
                 </div>
                 <div className={style.row}>
                     <div className={style.col25}>
-                        <label htmlFor="team">응원팀</label>
+                        <label className={style.label} htmlFor="teamName">팀명</label>
                     </div>
                     <div className={style.col75}>
-                        <select id="teamId" name="teamId" onChange={handleChange}>
-                            <option value="">응원팀 선택</option>
-                            <option value="K09">Fc seoul</option>
-                            <option value="K02">Suwon Samseong blue wings</option>
-                            <option value="K04">Incheon United</option>
-                        </select>
+                        <input className={style.inputText} type="text" id="teamName" name="teamName" onChange={handleChange}/>
                     </div>
                 </div>
                 <div className={style.row}>
                     <div className={style.col25}>
-                        <label htmlFor="subject">게시글 내용</label>
+                        <label className={style.label} htmlFor="origYyyy">창단년도</label>
                     </div>
                     <div className={style.col75}>
-                        <input type="textarea" id="subject" name="subject" style={{height:200 + "px"}} onChange={handleChange}/>
+                        <input className={style.inputText} type="text" id="origYyyy" name="origYyyy" onChange={handleChange}/>
+                    </div>
+                </div>
+                <div className={style.row}>
+                    <div className={style.col25}>
+                        <label className={style.label} htmlFor="stadiumName">스타디움 명칭</label>
+                    </div>
+                    <div className={style.col75}>
+                        <input className={style.inputText} type="text" id="stadiumName" name="stadiumName" onChange={handleChange}/>
+                    </div>
+                </div>
+                <div className={style.row}>
+                    <div className={style.col25}>
+                        <label className={style.label} htmlFor="address">주소</label>
+                    </div>
+                    <div className={style.col75}>
+                        <input className={style.inputText} type="text" id="address" name="address" onChange={handleChange}/>
+                    </div>
+                </div>
+                <div className={style.row}>
+                    <div className={style.col25}>
+                        <label className={style.label} htmlFor="tel">전화번호</label>
+                    </div>
+                    <div className={style.col75}>
+                        <input className={style.inputText} type="text" id="tel" name="tel" onChange={handleChange}/>
                     </div>
                 </div>
                 <br/>
                 <div className={style.row}>
                     <input className={style.inputSubmit} type="submit" value="Submit" onClick={handleSubmit}/>
                 </div>
-            </htmlForm>
+            </form>
         </div>
     </>)
 }
-
-
-
-
-
-
-
-
-

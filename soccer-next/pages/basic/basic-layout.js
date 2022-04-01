@@ -1,5 +1,5 @@
 import style from "common/style/Layout.module.css"
-import BasicNav from "basic/basic-nav"
+import {BasicNav} from "basic"
 
 export default function BasicLayout({children}){
   return (<>

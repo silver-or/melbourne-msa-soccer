@@ -3,7 +3,6 @@ import React, {useState} from "react"
 export default function SignIn(){
     const [inputs, setInputs] = useState({})
     const {userId, pw} = inputs;
-    const [result, setResult] = useState('')
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -11,9 +10,10 @@ export default function SignIn(){
         setInputs({...inputs, [name] : value})
     }
 
-    const handleClick = (e) => {
+    const handleSubmit = (e) => {
        e.preventDefault()
-       setResult("userId : " + userId + ", " + "pw : " + pw)
+       const dataset = {userId, pw}
+       alert(`데이터셋 출력 : ${JSON.stringify(dataset)}`)
     }
     
     return (<>
@@ -23,7 +23,7 @@ export default function SignIn(){
             <input type="text" name="userId" onChange={handleChange}/> <br/>
             <label><b>Password</b></label> <br/>
             <input type="password" name="pw" onChange={handleChange}/> <br/>
-            <button onClick={handleClick}>Login</button> <br/>
+            <button onClick={handleSubmit}>Login</button> <br/>
             <label>
                 <input type="checkbox"/> Remember me
             </label>
@@ -32,6 +32,5 @@ export default function SignIn(){
             <button>Cancel</button> &nbsp;
             <span>Forgot<a>password?</a></span>
         </div>
-        <div>{result}</div>
     </>)
 }

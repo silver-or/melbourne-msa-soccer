@@ -4,11 +4,11 @@ import style from "board/style/board-form.module.css"
 
 export default function BoardForm(){
     const [inputs, setInputs] = useState({})
-    const {passengerId, name, teamId, subject} = inputs;
+    const {passengerId, name, teamId, subject} = inputs
 
     const handleChange = (e) => { // e는 argument → 변하지 않음, 변한다면 e.preventDefault(), e.target이 제대로 작동되지 않을 수 있음
         e.preventDefault()
-        const {name, value} = e.target;
+        const {name, value} = e.target
         setInputs({...inputs, [name] : value})   
     }
 
@@ -59,7 +59,7 @@ export default function BoardForm(){
                 </div>
                 <br/>
                 <div className={style.row}>
-                    <input type="submit" className={style.inputSubmit} value="Submit" onClick={handleSubmit}/>
+                    <input className={style.inputSubmit} type="submit" value="Submit" onClick={handleSubmit}/>
                 </div>
             </htmlForm>
         </div>
