@@ -7,21 +7,16 @@ export default function Bmi(){
     const [bmi, setBmi] = useState(0.0)
     const [result, setResult] = useState('')
 
-    const onChange = (e) => {
+    const handleChange = (e) => {
         e.preventDefault()
-        const {value, name} = e.target;
+        const {name, value} = e.target;
         setInputs({...inputs, [name] : value})   
     }
 
-    const onClick = (e) => {
-        e.preventDefault() // HTML이 default
-        setBmi(Number(weight) / (Number(height) * Number(height)) * 10000)
-        if (bmi >= 35) {setResult(name + "의 키 : " + Number(height) + ", 몸무게 : " + Number(weight) + ", 고도비만")}
-        else if (bmi >= 30) {setResult(name + "의 키 : " + Number(height) + ", 몸무게 : " + Number(weight) + ", 중도비만")}
-        else if (bmi >= 25) {setResult(name + "의 키 : " + Number(height) + ", 몸무게 : " + Number(weight) + ", 경도비만")}
-        else if (bmi >= 23) {setResult(name + "의 키 : " + Number(height) + ", 몸무게 : " + Number(weight) + ", 과체중")}
-        else if (bmi >= 18.5) {setResult(name + "의 키 : " + Number(height) + ", 몸무게 : " + Number(weight) + ", 정상")}
-        else {setResult(name + "의 키 : " + Number(height) + ", 몸무게 : " + Number(weight) + ", 저체중")}
+    const handleSubmit = e => {
+        e.preventDefault()
+        const dataset = {name, height, weight}
+        alert(`데이터셋 출력 : ${JSON.stringify(dataset)}`)
     }
     
     return (<BasicLayout>
@@ -29,14 +24,14 @@ export default function Bmi(){
         <form>
             <div>
                 <label><b>이름</b></label> <br/>
-                <input type="text" name="name" onChange={onChange}/> <br/>
+                <input type="text" name="name" onChange={handleChange}/> <br/>
                 <label><b>키</b></label> <br/>
-                <input type="text" name="height" onChange={onChange}/> <br/>
+                <input type="text" name="height" onChange={handleChange}/> <br/>
                 <label><b>몸무게</b></label> <br/>
-                <input type="text" name="weight" onChange={onChange}/>
+                <input type="text" name="weight" onChange={handleChange}/>
             </div>
             <div>
-                <button onClick={onClick}>BMI 지수 체크하기</button> &nbsp;
+                <button onClick={handleSubmit}>BMI 지수 체크하기</button> &nbsp;
                 <button>취소</button>
             </div>
         </form>

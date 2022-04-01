@@ -6,19 +6,16 @@ export default function Grade(){
     const {name, kor, eng, math} = inputs;
     const [result, setResult] = useState('')
 
-    const onChange = (e) => {
+    const handleChange = (e) => {
         e.preventDefault()
-        const {value, name} = e.target;
+        const {name, value} = e.target;
         setInputs({...inputs, [name] : value})
     }
 
-    const onClick = (e) => {
+    const handleSubmit = e => {
         e.preventDefault()
-        setResult("이름 : " + name + ", " + 
-        "국어 점수 : " + kor + ", " +
-        "영어 점수 : " + eng + ", " +
-        "수학 점수 : " + math + ", " +
-        "총점 : " + (Number(kor) + Number(eng) + Number(math)))
+        const dataset = {name, kor, eng, math}
+        alert(`데이터셋 출력 : ${JSON.stringify(dataset)}`)
     }
     
     return (<BasicLayout>
@@ -26,16 +23,16 @@ export default function Grade(){
         <form>
             <div>
                 <label><b>이름</b></label> <br/>
-                <input name="name" onChange={onChange}/> <br/>
+                <input name="name" onChange={handleChange}/> <br/>
                 <label><b>국어 성적</b></label> <br/>
-                <input name="kor" onChange={onChange}/> <br/>
+                <input name="kor" onChange={handleChange}/> <br/>
                 <label><b>영어 성적</b></label> <br/>
-                <input name="eng" onChange={onChange}/> <br/>
+                <input name="eng" onChange={handleChange}/> <br/>
                 <label><b>수학 성적</b></label> <br/>
-                <input name="math" onChange={onChange}/>
+                <input name="math" onChange={handleChange}/>
             </div>
             <div>
-                <button onClick={onClick}>결과 확인하기</button> &nbsp;
+                <button onClick={handleSubmit}>결과 확인하기</button> &nbsp;
                 <button>취소</button>
             </div>
         </form>

@@ -6,31 +6,25 @@ export default function Calc(){
     const [result, setResult] = useState('')
     const {num1, opcode, num2} = inputs;
 
-    const onChange = (e) => {
-        e.preventDefault()
-        const {value, name} = e.target; // name : 키 값
+    const handleChange = (e) => {
+        e.preventDefault() // original HTML 을 막아야 React 작동
+        const {name, value} = e.target; // name : 키 값
         setInputs({...inputs, [name] : value})
     }
 
-    const onClick = (e) => {
+    const handleSubmit = e => {
         e.preventDefault()
-        switch (opcode) {
-            case '+' : setResult(num1 + opcode + num2 + " = " + (Number(num1) + Number(num2))); break;
-            case '-' : setResult(num1 + opcode + num2 + " = " + (Number(num1) - Number(num2))); break;
-            case '*' : setResult(num1 + opcode + num2 + " = " + (Number(num1) * Number(num2))); break;
-            case '/' : setResult(num1 + opcode + num2 + " = " + (Number(num1) / Number(num2))); break;
-            case '%' : setResult(num1 + opcode + num2 + " = " + (Number(num1) % Number(num2))); break;
-            default : setResult("올바른 연산자가 아닙니다."); break;
-        }
+        const dataset = {num1, opcode, num2}
+        alert(`데이터셋 출력 : ${JSON.stringify(dataset)}`)
     }
-    
+
     return (<BasicLayout>
         <h1>계산기</h1>
         <form>
             <label><b>num1</b></label> <br/>
-            <input name="num1" onChange={onChange}/> <br/>
+            <input name="num1" onChange={handleChange}/> <br/>
             <label><b>연산자</b></label> <br/>
-            <select name="opcode" onChange={onChange}>
+            <select name="opcode" onChange={handleChange}>
                 <option value="+">+</option>
                 <option value="-">-</option>
                 <option value="*">*</option>
@@ -38,9 +32,9 @@ export default function Calc(){
                 <option value="%">%</option>
             </select> <br/>
             <label><b>num2</b></label> <br/>
-            <input name="num2" onChange={onChange}/> <br/>
+            <input name="num2" onChange={handleChange}/> <br/>
             <div>
-                <button onClick={onClick}>계산하기</button> &nbsp;
+                <button onClick={handleSubmit}>계산하기</button> &nbsp;
                 <button>취소</button>
             </div>
         </form>
