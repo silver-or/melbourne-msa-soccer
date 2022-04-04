@@ -31,3 +31,66 @@ app.get('/', (req, res) => {
 app.get('/api/now', cors(corsOptions), (req, res) => {
   res.json({"now" : new Date().toLocaleString()})
 })
+
+app.post("/api/basic/bmi", (req, res) => {
+  console.log(`계산된 JSON 값 : ${JSON.stringify(computeBMI(req.body))}`)
+  res.json(computeBMI(req.body))
+})
+
+app.post("/api/basic/calc", (req, res) => {
+  console.log(`계산된 JSON 값 : ${JSON.stringify(calculate(req.body))}`)
+  res.json(calculate(req.body))
+})
+
+app.post("/api/basic/grade", (req, res) => {
+  res.json(getGrade(req.body))
+})
+
+app.post("/api/board/write", (req, res) => {
+  res.json(req.body)
+})
+
+function computeBMI({name, height, weight}){
+  let _height = Number(height) / 100
+  let _weight = Number(weight)
+  let bmi = _weight/Math.pow(_height, 2)
+  let output = Math.round(bmi * 100) / 100
+  console.log(output)
+  const result = {name, height, weight} // 구조화 structuring
+  if (output < 18.5)
+    result.bmi = "Underweight"
+  else if (output <= 25)
+    result.bmi = "Normal"
+  else if (output <= 30)
+    result.bmi = "Obese"
+  else
+    result.bmi = "Overweight"
+  return result
+}
+
+function calculate({num1, opcode, num2}){
+  let _num1 = Number(num1)
+  let _num2 = Number(num2)
+  const result = {num1, opcode, num2}
+  switch(opcode) {
+    case '+' : result.res = _num1 + _num2; break;
+    case '-' : result.res = _num1 - _num2; break;
+    case '*' : result.res = _num1 * _num2; break;
+    case '/' : result.res = _num1 / _num2; break;
+    case '%' : result.res = _num1 % _num2; break;
+  }
+  return result
+}
+
+function getGrade({name, kor, eng, math}){
+  let _kor = Number(kor)
+  let _eng = Number(eng)
+  let _math = Number(math)
+  let avg = (_kor + _eng +_math) / 3.0
+  const result = {name, kor, eng, math}
+  if (avg >= 60.0)
+    result.res = "합격"
+  else
+    result.res = "불합격"
+  return result
+}

@@ -1,4 +1,5 @@
-import React, {useState} from "react"
+import React, {useState} from "react" // 경량화 (필요한 것만 뽑아냄)
+import axios from "axios"
 import {BasicLayout} from "basic/index"
 
 export default function Bmi(){
@@ -13,14 +14,23 @@ export default function Bmi(){
 
     const handleSubmit = e => {
         e.preventDefault()
-        const dataset = {name, height, weight}
-        alert(`데이터셋 출력 : ${JSON.stringify(dataset)}`)
+        axios.post('http://localhost:5000/api/basic/bmi', inputs)
+        .then(res => {
+            const bmi = res.data
+            document.getElementById('result-span').innerHTML = `
+                <h3>이름 : ${bmi.name}</h3>
+                <h3>키 : ${bmi.height} cm</h3>
+                <h3>몸무게 : ${bmi.weight}kg</h3>
+                <h3>BMI결과 : ${bmi.bmi}</h3>
+            `
+        })
+        .catch(err => alert(err))
     }
     
     return (<>
         <BasicLayout>
             <h1>Bmi</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label><b>이름</b></label> <br/>
                     <input type="text" name="name" onChange={handleChange}/> <br/>
@@ -30,9 +40,10 @@ export default function Bmi(){
                     <input type="text" name="weight" onChange={handleChange}/>
                 </div>
                 <div>
-                    <button onClick={handleSubmit}>BMI 지수 체크하기</button> &nbsp;
+                    <input type="submit" value="BMI 체크"/> &nbsp;
                     <button>취소</button>
                 </div>
+                <div>결과 : <span id="result-span"/></div>
             </form>
         </BasicLayout>
     </>)

@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import axios from "axios"
 import {BasicLayout} from "basic";
 
 export default function Calc(){
@@ -13,8 +14,14 @@ export default function Calc(){
 
     const handleSubmit = e => {
         e.preventDefault()
-        const dataset = {num1, opcode, num2}
-        alert(`데이터셋 출력 : ${JSON.stringify(dataset)}`)
+        axios.post(`http://localhost:5000/api/basic/calc`, inputs)
+        .then(res => {
+            const calc = res.data
+            document.getElementById('result-span').innerHTML = `
+                <h3>${calc.num1} ${calc.opcode} ${calc.num2} = ${calc.res}</h3>
+            `
+        })
+        .catch(err => alert(err))
     }
 
     return (<>
@@ -37,6 +44,7 @@ export default function Calc(){
                     <button onClick={handleSubmit}>계산하기</button> &nbsp;
                     <button>취소</button>
                 </div>
+                <div>결과 : <span id="result-span"/></div>
             </form>
         </BasicLayout>
     </>)

@@ -1,5 +1,6 @@
 // 사용자에게 유의미한 data를 받아서 dataset 만들기
 import React, {useState} from "react";
+import axios from "axios"
 import style from "board/style/board-form.module.css"
 
 export default function BoardForm(){
@@ -14,8 +15,17 @@ export default function BoardForm(){
 
     const handleSubmit = e => {
         e.preventDefault()
-        const dataset = {passengerId, name, teamId, subject}
-        alert(`데이터셋 출력 : ${JSON.stringify(dataset)}`)
+        axios.post('http://localhost:5000/api/board/write', inputs) // param은 callback → 상태 (inputs) 변경
+        .then(res => {
+            const board_form = res.data
+            document.getElementById('result-span').innerHTML = `
+                <h3>사용자 ID : ${board_form.passengerId}</h3>
+                <h3>사용자 이름 : ${board_form.name}</h3>
+                <h3>팀 아이디 : ${board_form.teamId}</h3>
+                <h3>게시글 내용 : ${board_form.subject}</h3>
+            `
+        })
+        .catch(err => alert(err))
     }
 
     return(<>
@@ -61,6 +71,7 @@ export default function BoardForm(){
                 <div className={style.row}>
                     <input className={style.inputSubmit} type="submit" value="Submit" onClick={handleSubmit}/>
                 </div>
+                <div>결과 : <span id="result-span"/></div>
             </htmlForm>
         </div>
     </>)

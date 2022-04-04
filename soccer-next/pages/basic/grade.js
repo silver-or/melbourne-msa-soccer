@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import {BasicLayout} from "basic";
+import axios from "axios";
 
 export default function Grade(){
     const [inputs, setInputs] = useState({})
@@ -13,8 +14,18 @@ export default function Grade(){
 
     const handleSubmit = e => {
         e.preventDefault()
-        const dataset = {name, kor, eng, math}
-        alert(`데이터셋 출력 : ${JSON.stringify(dataset)}`)
+        axios.post('http://localhost:5000/api/basic/grade', inputs)
+        .then(res => {
+            const grade = res.data
+            document.getElementById('result-span').innerHTML = `
+                <h3>이름 : ${grade.name}</h3>
+                <h3>국어 성적 : ${grade.kor}</h3>
+                <h3>영어 성적 : ${grade.eng}</h3>
+                <h3>수학 성적 : ${grade.math}</h3>
+                <h3>합격 여부 : ${grade.res}</h3>
+            `
+        })
+        .catch(err => alert(err))
     }
     
     return (<>
@@ -35,6 +46,7 @@ export default function Grade(){
                     <button onClick={handleSubmit}>결과 확인하기</button> &nbsp;
                     <button>취소</button>
                 </div>
+                <div>결과 : <span id="result-span"/></div>
             </form>
         </BasicLayout>
     </>)
