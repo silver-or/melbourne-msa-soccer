@@ -17,7 +17,7 @@ export default function BoardForm(){
         e.preventDefault()
         axios.post(proxy + '/api/board/write', inputs) // param은 callback → 상태 (inputs) 변경
         .then(res => {
-            alert(res.data.result)
+            alert(`${JSON.stringify(res.data)}`)
         })
         .catch(err => alert(err))
     }

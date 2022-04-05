@@ -1,59 +1,13 @@
+const {getBmi, calculate, getGrade} = require('../services/basic.service')
+
 exports.bmi = (req, res)=>{
-  console.log(computeBMI(req.body))
-  res.status(200).json({'result':'ok'})
+  res.status(200).json(getBmi(req.body))
 }
 
 exports.calc = (req, res)=>{
-  console.log(calculate(req.body))
-  res.status(200).json({'result':'ok'})
+  res.status(200).json(calculate(req.body))
 }
 
 exports.grade = (req, res)=>{
-  console.log(getGrade(req.body))
-  res.status(200).json({'result':'ok'})
-}
-
-function computeBMI({name, height, weight}){
-  let _height = Number(height) / 100
-  let _weight = Number(weight)
-  let bmi = _weight/Math.pow(_height, 2)
-  let output = Math.round(bmi * 100) / 100
-  console.log(output)
-  const result = {name, height, weight} // 구조화 structuring
-  if (output < 18.5)
-    result.bmi = "Underweight"
-  else if (output <= 25)
-    result.bmi = "Normal"
-  else if (output <= 30)
-    result.bmi = "Obese"
-  else
-    result.bmi = "Overweight"
-  return result
-}
-  
-function calculate({num1, opcode, num2}){
-  let _num1 = Number(num1)
-  let _num2 = Number(num2)
-  const result = {num1, opcode, num2}
-  switch(opcode) {
-    case '+' : result.res = _num1 + _num2; break;
-    case '-' : result.res = _num1 - _num2; break;
-    case '*' : result.res = _num1 * _num2; break;
-    case '/' : result.res = _num1 / _num2; break;
-    case '%' : result.res = _num1 % _num2; break;
-  }
-  return result
-}
-  
-function getGrade({name, kor, eng, math}){
-  let _kor = Number(kor)
-  let _eng = Number(eng)
-  let _math = Number(math)
-  let avg = (_kor + _eng +_math) / 3.0
-  const result = {name, kor, eng, math}
-  if (avg >= 60.0)
-    result.res = "합격"
-  else
-    result.res = "불합격"
-  return result
+  res.status(200).json(getGrade(req.body))
 }

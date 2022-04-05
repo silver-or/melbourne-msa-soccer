@@ -16,7 +16,7 @@ export default function Grade(){
         e.preventDefault()
         axios.post(proxy + '/api/basic/grade', inputs)
         .then(res => {
-            alert(res.data.result)
+            alert(`${JSON.stringify(res.data)}`)
         })
         .catch(err => alert(err))
     }

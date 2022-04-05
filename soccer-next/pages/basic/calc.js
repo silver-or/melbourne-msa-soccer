@@ -16,7 +16,7 @@ export default function Calc(){
         e.preventDefault()
         axios.post(proxy + `/api/basic/calc`, inputs)
         .then(res => {
-            alert(res.data.result)
+            alert(`${JSON.stringify(res.data)}`)
         })
         .catch(err => alert(err))
     }

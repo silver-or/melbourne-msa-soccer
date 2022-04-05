@@ -16,7 +16,7 @@ export default function Bmi(){
         e.preventDefault()
         axios.post(proxy + '/api/basic/bmi', inputs)
         .then(res => {
-            alert(res.data.result)
+            alert(`${JSON.stringify(res.data)}`)
         })
         .catch(err => alert(err))
     }
