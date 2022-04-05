@@ -3,8 +3,8 @@ import axios from "axios"
 import {BasicLayout} from "basic/index"
 
 export default function Bmi(){
+    const proxy = 'http://localhost:5000'
     const [inputs, setInputs] = useState({}) // 세 개로 나뉜 것을 JSON({})으로 합침
-    const {name, height, weight} = inputs // Object Destructuring (구조 분해 할당) // 꺼내면서 객체에 이름 부여
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -14,15 +14,9 @@ export default function Bmi(){
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post('http://localhost:5000/api/basic/bmi', inputs)
+        axios.post(proxy + '/api/basic/bmi', inputs)
         .then(res => {
-            const bmi = res.data
-            document.getElementById('result-span').innerHTML = `
-                <h3>이름 : ${bmi.name}</h3>
-                <h3>키 : ${bmi.height} cm</h3>
-                <h3>몸무게 : ${bmi.weight}kg</h3>
-                <h3>BMI결과 : ${bmi.bmi}</h3>
-            `
+            alert(res.data.result)
         })
         .catch(err => alert(err))
     }
@@ -43,7 +37,6 @@ export default function Bmi(){
                     <input type="submit" value="BMI 체크"/> &nbsp;
                     <button>취소</button>
                 </div>
-                <div>결과 : <span id="result-span"/></div>
             </form>
         </BasicLayout>
     </>)

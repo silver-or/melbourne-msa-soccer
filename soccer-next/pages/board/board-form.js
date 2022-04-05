@@ -4,8 +4,8 @@ import axios from "axios"
 import style from "board/style/board-form.module.css"
 
 export default function BoardForm(){
+    const proxy = 'http://localhost:5000'
     const [inputs, setInputs] = useState({})
-    const {passengerId, name, teamId, subject} = inputs
 
     const handleChange = (e) => { // e는 argument → 변하지 않음, 변한다면 e.preventDefault(), e.target이 제대로 작동되지 않을 수 있음
         e.preventDefault()
@@ -15,22 +15,16 @@ export default function BoardForm(){
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post('http://localhost:5000/api/board/write', inputs) // param은 callback → 상태 (inputs) 변경
+        axios.post(proxy + '/api/board/write', inputs) // param은 callback → 상태 (inputs) 변경
         .then(res => {
-            const board_form = res.data
-            document.getElementById('result-span').innerHTML = `
-                <h3>사용자 ID : ${board_form.passengerId}</h3>
-                <h3>사용자 이름 : ${board_form.name}</h3>
-                <h3>팀 아이디 : ${board_form.teamId}</h3>
-                <h3>게시글 내용 : ${board_form.subject}</h3>
-            `
+            alert(res.data.result)
         })
         .catch(err => alert(err))
     }
 
     return(<>
         <div className={style.container}>
-            <htmlForm action="">
+            <form action="" onSubmit={handleSubmit}>
                 <div className={style.row}>
                     <div className={style.col25}>
                         <label className={style.label} htmlFor="passengerId">PassengerId</label>
@@ -69,10 +63,9 @@ export default function BoardForm(){
                 </div>
                 <br/>
                 <div className={style.row}>
-                    <input className={style.inputSubmit} type="submit" value="Submit" onClick={handleSubmit}/>
+                    <input className={style.inputSubmit} type="submit" value="Submit"/>
                 </div>
-                <div>결과 : <span id="result-span"/></div>
-            </htmlForm>
+            </form>
         </div>
     </>)
 }

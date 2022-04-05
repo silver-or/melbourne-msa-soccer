@@ -3,8 +3,8 @@ import axios from "axios"
 import {BasicLayout} from "basic";
 
 export default function Calc(){
-    const [inputs, setInputs] = useState({})
-    const {num1, opcode, num2} = inputs
+    const proxy = 'http://localhost:5000'
+    const [inputs, setInputs] = useState({opcode : '+'})
 
     const handleChange = (e) => {
         e.preventDefault() // original HTML 을 막아야 React 작동
@@ -14,12 +14,9 @@ export default function Calc(){
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post(`http://localhost:5000/api/basic/calc`, inputs)
+        axios.post(proxy + `/api/basic/calc`, inputs)
         .then(res => {
-            const calc = res.data
-            document.getElementById('result-span').innerHTML = `
-                <h3>${calc.num1} ${calc.opcode} ${calc.num2} = ${calc.res}</h3>
-            `
+            alert(res.data.result)
         })
         .catch(err => alert(err))
     }
@@ -44,7 +41,6 @@ export default function Calc(){
                     <button onClick={handleSubmit}>계산하기</button> &nbsp;
                     <button>취소</button>
                 </div>
-                <div>결과 : <span id="result-span"/></div>
             </form>
         </BasicLayout>
     </>)
