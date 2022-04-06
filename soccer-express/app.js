@@ -22,14 +22,18 @@ var corsOptions = {
   optionsSuccessStatus : 200
 }
 
+app.listen(PORT, () => {
+  console.log('***************** ***************** *****************')
+  console.log('***************** ***************** *****************')
+  console.log('********** 서버가 정상적으로 실행되고 있습니다 *********')
+  console.log('***************** ***************** *****************')
+  console.log('***************** ***************** *****************')
+})
+
 mongoose
   .connect(MONGO_URI, {useNewUrlParser : true, useUnifiedTopology : true})
   .then(() => console.log('Successfully connected to mongodb'))
   .catch(e => console.error(e))
-
-app.listen(PORT,() => {
-  console.log({"현재 시간 : " : new Date().toLocaleString()})
-})
 
 app.get('/', (req, res) => {
   res.json({"현재 시간 : " : new Date().toLocaleString()})

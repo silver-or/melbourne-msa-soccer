@@ -15,7 +15,7 @@ export default function SignUp(){
         e.preventDefault()
         axios.post(proxy + '/api/user/sign-up', inputs)
         .then(res => {
-            alert(res.data.result)
+            alert(`${JSON.stringify(res.data)}`)
         })
         .catch(err => alert(err))   
     }
