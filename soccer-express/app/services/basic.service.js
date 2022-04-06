@@ -2,7 +2,7 @@ exports.getBmi = (payload) => {
     const {name, height, weight} = payload
     let _height = Number(height) / 100
     let _weight = Number(weight)
-    let bmi = _weight/Math.pow(_height, 2)
+    let bmi = _weight / Math.pow(_height, 2)
     let output = Math.round(bmi * 100) / 100
     console.log(output)
     const result = {name, height, weight} // 구조화 structuring
