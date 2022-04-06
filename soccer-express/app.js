@@ -9,12 +9,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors())
 const APP = './app/routes'
-// require(`${APP}/admin.route`)({url : '/api/admin', app})
-require(`${APP}/basic.route`)({url : '/api/basic', app})
-require(`${APP}/board.route`)({url : '/api/board', app})
-// require(`${APP}/game.route`)({url : '/api/game', app})
-// require(`${APP}/todo.route`)({url : '/api/todo', app})
-require(`${APP}/user.route`)({url : '/api/user', app})
+const nodes = ['admin', 'basic', 'board', 'game', 'todo', 'user']
+for (const leaf of nodes) {
+  require(`${APP}/${leaf}.route`)({url : `/api/${leaf}`, app})
+}
 
 const corsOptions = {
   origin : 'http://localhost:3000',
@@ -25,10 +23,7 @@ const db = require('./app/models/index')
 db.mongoose
   .connect(MONGO_URI, {useNewUrlParser : true, useUnifiedTopology : true})
   .then(() => {
-    console.log('MongoDB 연결 설정')
-    console.log('db.url', db.url)
-    console.log('db.mongoose', db.mongoose)
-    console.log('db.user.db', db.user.db)
+    console.log('### MongoDB 연결 성공 ###')
   })
   .catch(err => {
     console.log('MongoDB와 연결 실패', err)
