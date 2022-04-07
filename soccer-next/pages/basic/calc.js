@@ -24,7 +24,7 @@ export default function Calc(){
     return (<>
         <BasicLayout>
             <h1>계산기</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label><b>num1</b></label> <br/>
                 <input name="num1" onChange={handleChange}/> <br/>
                 <label><b>연산자</b></label> <br/>
@@ -38,7 +38,7 @@ export default function Calc(){
                 <label><b>num2</b></label> <br/>
                 <input name="num2" onChange={handleChange}/> <br/>
                 <div>
-                    <button onClick={handleSubmit}>계산하기</button> &nbsp;
+                    <button>계산하기</button> &nbsp;
                     <button>취소</button>
                 </div>
             </form>

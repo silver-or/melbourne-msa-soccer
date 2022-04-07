@@ -24,7 +24,7 @@ export default function Grade(){
     return (<>
         <BasicLayout>
             <h1>성적표</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label><b>이름</b></label> <br/>
                     <input name="name" onChange={handleChange}/> <br/>
@@ -36,7 +36,7 @@ export default function Grade(){
                     <input name="math" onChange={handleChange}/>
                 </div>
                 <div>
-                    <button onClick={handleSubmit}>결과 확인하기</button> &nbsp;
+                    <button>결과 확인하기</button> &nbsp;
                     <button>취소</button>
                 </div>
             </form>

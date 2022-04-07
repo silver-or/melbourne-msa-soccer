@@ -19,7 +19,7 @@ export default function TeamForm(){
 
     return (<>
         <div className={style.container}>
-            <form action="">
+            <form action="" onSubmit={handleSubmit}>
                 <div className={style.row}>
                     <div className={style.col25}>
                         <label className={style.label} htmlFor="teamId">팀 ID</label>
@@ -78,7 +78,7 @@ export default function TeamForm(){
                 </div>
                 <br/>
                 <div className={style.row}>
-                    <input className={style.inputSubmit} type="submit" value="Submit" onClick={handleSubmit}/>
+                    <input className={style.inputSubmit} type="submit" value="Submit"/>
                 </div>
             </form>
         </div>
