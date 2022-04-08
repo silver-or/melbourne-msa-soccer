@@ -8,5 +8,6 @@ const db = {} // 빈 땅에 db라는 이름을 줌
 db.mongoose = mongoose
 db.url = MONGO_URI
 db.user = require('./user.model')(mongoose)
+db.board = require('./board.model')(mongoose)
 
 module.exports = db

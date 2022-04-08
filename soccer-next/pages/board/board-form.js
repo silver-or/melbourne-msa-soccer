@@ -5,7 +5,7 @@ import style from "board/style/board-form.module.css"
 
 export default function BoardForm(){
     const proxy = 'http://localhost:5000'
-    const [inputs, setInputs] = useState({})
+    const [inputs, setInputs] = useState({teamId : 'K09'})
 
     const handleChange = (e) => { // e는 argument → 변하지 않음, 변한다면 e.preventDefault(), e.target이 제대로 작동되지 않을 수 있음
         e.preventDefault()

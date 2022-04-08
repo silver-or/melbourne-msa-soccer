@@ -1,20 +1,35 @@
+import axios from "axios"
 import tableStyles from "common/style/table.module.css"
+import Link from "next/link"
+import {useEffect, useState} from "react"
 
 const Table = ({columns, colspan, data}) => {
     return (
         <table className={tableStyles.table}>
             <thead>
                 <tr className={tableStyles.tr}>
-                    {columns.map((column) => (
-                        <th key={column} className={tableStyles.td}>{column}</th>
+                    {columns.map((column, index) => (
+                        <th key={index} className={tableStyles.td}>{column}</th>
                     ))}
                 </tr>
             </thead>
             <tbody>
+                {data.length == 0 ? 
                 <tr className={tableStyles.tr}>
-                    {data.length == 0 ? <td colSpan={colspan} className={tableStyles.td}>데이터가 없습니다.</td>
-                    : <td colSpan={colspan} className={tableStyles.td}>데이터가 있습니다.</td>}
+                    <td colSpan={colspan} className={tableStyles.td}>데이터가 없습니다.</td>
                 </tr>
+                : data.map((user) => (
+                    <tr className={tableStyles.tr} key={user.userId}>
+                        <td className={tableStyles.td}>
+                            <Link href={{pathname:`/user/[userId]`, query:{selectedUser: 'test'}}} as={`/user/${user.userId}`}>
+                                <a>{user.userId}</a>
+                            </Link>
+                        </td>
+                        <td className={tableStyles.td}>{user.pw}</td>
+                        <td className={tableStyles.td}>{user.userName}</td>
+                        <td className={tableStyles.td}>{user.tel}</td>
+                    </tr>
+                ))}
             </tbody>
         </table>
     )
@@ -22,10 +37,17 @@ const Table = ({columns, colspan, data}) => {
 
 export default function UserList(){
     const columns = ["userId", "pw", "userName", "tel"]
-    const data = []
+    const [data, setData] = useState([])
+    const proxy = 'http://localhost:5000'
+    useEffect(() => {
+        axios.get(proxy + '/api/user/list')
+        .then(res => {
+            setData(res.data.users)
+        })
+        .catch(err => {})
+    }, [])
     return(<>
         <h1>사용자 목록</h1>
-        {data.length >= 1 && <h3>회원 수 : {data.length} 명</h3>}
         <div className={tableStyles.td}>
             <Table columns={columns} colspan={4} data={data}/>
         </div>
