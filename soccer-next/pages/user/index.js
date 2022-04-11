@@ -1,2 +1,2 @@
-export {default as SignIn} from 'user/sign-in'
-export {default as SignUp} from 'user/sign-up'
+export {default as Login} from 'user/login'
+export {default as Join} from 'user/join'

@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 
-export default function SignIn(){
+export default function Login(){
     const [inputs, setInputs] = useState({})
     const {userId, pw} = inputs;
 

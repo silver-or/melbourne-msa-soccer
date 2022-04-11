@@ -14,8 +14,8 @@ export default function Nav(){
                 <li className={styles.li}> <Link href='/admin/dashboard'>Dashboard</Link> </li>
                 <li className={styles.li}> <Link href='/board/board-list'>Board List</Link> </li>
                 <li className={styles.li}> <Link href='/board/board-form'>Board Form</Link> </li>
-                <li className={styles.li}> <Link href='/user/sign-in'>Sign In</Link> </li>
-                <li className={styles.li}> <Link href='/user/sign-up'>Sign Up</Link> </li>
+                <li className={styles.li}> <Link href='/user/login'>login</Link> </li>
+                <li className={styles.li}> <Link href='/user/join'>join</Link> </li>
                 <li className={styles.li}> <Link href='/user/user-list'>User List</Link> </li>
             </ul>
         </nav>

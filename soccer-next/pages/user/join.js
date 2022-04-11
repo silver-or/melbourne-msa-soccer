@@ -1,7 +1,7 @@
 import axios from "axios"
 import React, {useState} from "react"
 
-export default function SignUp(){
+export default function Join(){
     const proxy = 'http://localhost:5000'
     const [inputs, setInputs] = useState({}) // 상태를 inputs 라는 이름으로 줌, JSON 내부의 어느 공간에 이름을 준 것. sign-in과 다른 이름이어야 함.
 
