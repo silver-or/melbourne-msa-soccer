@@ -1,4 +1,4 @@
-require('dotenv').config() // 전역, dotenv : 환경
+require('dotenv').config() // 전역 // dotenv : 환경
 const cors = require('cors')
 const express = require('express')
 const app = express()
