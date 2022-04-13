@@ -1,5 +1,5 @@
 import axios from "axios"
-import tableStyles from "common/style/table.module.css"
+import tableStyles from "common/styles/table.module.css"
 import Link from "next/link"
 import {useEffect, useState} from "react"
 

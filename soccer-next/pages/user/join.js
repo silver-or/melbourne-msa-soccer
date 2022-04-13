@@ -18,7 +18,7 @@ import _ from '../@lodash';
 import { joinRequest } from '../../redux/reducers/user.reducer';
 
 const schema = yup.object().shape({
-    userId : yup.string().required('You must enter your id'),
+    userId : yup.string().required('You must enter your id.'),
     pw: yup
     .string()
     .required('Please enter your password.')
@@ -35,7 +35,7 @@ const defaultValues = {
     tel : ''
 };
 
-export default function Register3Page() {
+export default function Join() {
   const { control, formState, handleSubmit, reset } = useForm({
     mode: 'onChange',
     defaultValues,
@@ -65,7 +65,7 @@ export default function Register3Page() {
                   animate={{ opacity: 1, transition: { delay: 0.2 } }}
                 >
                   <div className="flex items-center mb-48">
-                    <Image src="/user/paper-pencil.png" alt="me" width="64" height="64" />
+                    <Image src="/user/paper-pencil.png" alt="paper-pencil" width="64" height="64" />
                     <div className="border-l-1 mr-4 w-1 h-40" />
                     <div>
                       <Typography className="text-24 font-semibold logo-text" color="inherit">

@@ -1,7 +1,7 @@
 import React, {useState} from "react" // 상태는 객체, 주소를 갖고 있어야 함 → JSON
 import style from "board/style/board-form.module.css"
 
-export default function TeamForm(){
+export default function Team(){
     const [inputs, setInputs] = useState({})
     const {teamId, regionName, teamName, origYyyy, stadiumName, address, tel} = inputs
 

@@ -13,7 +13,7 @@ export const createStore = () => {
     const store = configureStore({ // 상태 변경
         reducer : rootReducer,
         devTools : isDev,
-        middleware : [sagaMiddleware]
+        middleware : [sagaMiddleware] // detection 감지
     })
     // sagaMiddleware.run(rootSaga)
     return store
