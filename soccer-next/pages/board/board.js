@@ -1,8 +1,8 @@
 // 사용자에게 유의미한 data를 받아서 dataset 만들기
 import React, {useState} from "react";
-import {addBoard} from "../../redux/reducers/board.reducer"
+import {addBoard} from "../../redux/reducers/boardReducer.ts"
 import axios from "axios"
-import style from "board/styles/board-form.module.css"
+import style from "../board/styles/board-form.module.css"
 import {useDispatch} from "react-redux";
 
 export default function Board(){

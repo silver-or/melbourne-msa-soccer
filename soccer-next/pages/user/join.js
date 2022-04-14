@@ -15,24 +15,28 @@ import _ from '../@lodash';
 // import './style/UserLayout.scss'
 // import './style/UserRegister.scss'
 // import { CheckList } from '..';
-import { joinRequest } from '../../redux/reducers/user.reducer';
+import { joinRequest } from '../../redux/reducers/userReducer.ts';
 
 const schema = yup.object().shape({
-    userId : yup.string().required('You must enter your id.'),
-    pw: yup
+  userid: yup.string().required('You must enter your id'),
+  name : yup.string().required('You must enter your name'),
+  email: yup.string().email('You must enter a valid email').required('You must enter a email'),
+  password: yup
     .string()
     .required('Please enter your password.')
     .min(8, 'Password is too short - should be 8 chars minimum.'),
-    pwConfirm : yup.string().oneOf([yup.ref('pw'), null], 'Passwords must match'),
-    userName : yup.string().required('You must enter your name'),
-    tel : yup.string().required('You must enter your telephone number.')
+  passwordConfirm: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
+
 });
 
 const defaultValues = {
-    userId : '',
-    pw : '',
-    userName : '',
-    tel : ''
+  userid: '',
+  password: '',
+  email: '',
+  name: '',
+  phone: '',
+  birth: '',
+  address: ''
 };
 
 export default function Join() {
@@ -83,10 +87,9 @@ export default function Join() {
                   name="registerForm"
                   noValidate
                   className="flex flex-col justify-center w-full"
-                  onSubmit={handleSubmit(async (data) => { await dispatch(joinRequest({ ...data, })) })}
                 >
                   <Controller
-                    name="username"
+                    name="userid"
                     control={control}
                     render={({ field }) => (
                       <TextField
@@ -127,6 +130,26 @@ export default function Join() {
                   <button onClick={() => dispatch(
                     exist(document.getElementById('email').value))}>중복체크</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  
+                  <Controller
+                    id="name"
+                    name="name"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        className="mb-16"
+                        label="Name"
+                        type="name"
+                        error={!!errors.name}
+                        helperText={errors?.name?.message}
+                        variant="outlined"
+                        required
+                        fullWidth
+                      />
+                    )}
+                  />
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                   <Controller
                     name="phone"

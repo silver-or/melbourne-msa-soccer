@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux" // react와 redux 연결, action이 될 이벤트를 던짐
-import { addTask } from "../../redux/reducers/todo.reducer"
+import { addTask } from "../../redux/reducers/todoReducer.ts"
 
 export default function Todo() {
     const [value, setValue] = useState('')

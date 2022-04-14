@@ -3,15 +3,9 @@ import {HYDRATE} from "next-redux-wrapper"
 
 const initialState = {}
 export const adminSlice = createSlice({
-    name : 'admins',
+    name : 'admin',
     initialState, // [abc, setAbc]
-    reducers : {},
-    extraReducers : {
-        [HYDRATE] : () => {
-            console.log(action.payload)
-            return action.payload.admin
-        }
-    }
+    reducers : {}
 })
 
 export default adminSlice.reducer

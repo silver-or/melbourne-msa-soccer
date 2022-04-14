@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {BasicLayout} from "basic";
+import {BasicLayout} from "../basic";
 import axios from "axios";
 
 export default function Grade(){

@@ -13,12 +13,12 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import  Link  from "next/link";
 import * as yup from "yup";
-import _ from "@lodash";
+import _ from "../@lodash";
 // import { LayOut } from "features/common";
 // import "features/common/font/font.scss";
 // import "features/common/style/image.scss";
 // import "features/user/style/UserLayout.scss";
-import { loginRequest } from "../../redux/reducers/user.reducer";
+import { loginRequest } from "../../redux/reducers/userReducer.ts";
 import Image from "next/image";
 
 const Root = styled('div')(({ theme }) => ({
@@ -37,7 +37,7 @@ const Root = styled('div')(({ theme }) => ({
  * Form Validation Schema
  */
 const schema = yup.object().shape({
-  userId: yup.string().required('You must enter your id.'),
+  email: yup.string().email('You must enter a valid email').required('You must enter a email'),
   password: yup
     .string()
     .required('Please enter your password.')
@@ -45,10 +45,11 @@ const schema = yup.object().shape({
 });
 
 const defaultValues = {
-    userId : '',
-    pw : '',
-    userName : '',
-    tel : ''
+  email: '',
+  password: '',
+  username: '',
+  birth: '',
+  address: '',
 };
 
 export default function Login() {

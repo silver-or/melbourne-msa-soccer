@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {BasicLayout} from "basic";
+import {BasicLayout} from "../basic";
 
 export default function Counter(){
   const [count, setCount] = useState(0)

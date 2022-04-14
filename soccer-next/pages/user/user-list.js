@@ -1,5 +1,5 @@
 import axios from "axios"
-import tableStyles from "common/styles/table.module.css"
+import tableStyles from "../common/styles/table.module.css"
 import Link from "next/link"
 import {useEffect, useState} from "react"
 
@@ -36,7 +36,7 @@ const Table = ({columns, colspan, data}) => {
 }
 
 export default function UserList(){
-    const columns = ["userId", "pw", "userName", "tel"]
+    const columns = ["사용자ID", "이름", "이메일", "전화번호", "생년월일", "주소"]
     const [data, setData] = useState([])
     const proxy = 'http://localhost:5000'
     useEffect(() => {

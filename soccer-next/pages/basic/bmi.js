@@ -1,6 +1,6 @@
 import React, {useState} from "react" // 경량화 (필요한 것만 뽑아냄)
 import axios from "axios"
-import {BasicLayout} from "basic/index"
+import {BasicLayout} from "../basic/index"
 
 export default function Bmi(){
     const proxy = 'http://localhost:5000'

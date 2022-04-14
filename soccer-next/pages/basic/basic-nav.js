@@ -1,6 +1,6 @@
 import Link from "next/link"
-// import styles from "common/style/Nav.module.css"
-import styles from "basic/style/basic-nav.module.css"
+// import styles from "common/styles/Nav.module.css"
+import styles from "../basic/styles/basic-nav.module.css"
 
 export default function BasicNav(){
     return (<>

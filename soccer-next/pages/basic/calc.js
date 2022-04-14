@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import axios from "axios"
-import {BasicLayout} from "basic";
+import {BasicLayout} from "../basic";
 
 export default function Calc(){
     const proxy = 'http://localhost:5000'

@@ -1,7 +1,7 @@
-import {Layout} from "common"
+import {Layout} from "./common"
+import {wrapper} from '../redux/store.ts'
 import App from "next/app"
 import Head from "next/head"
-import wrapper from "../redux/store"
 // import './user/style/UserLayout.scss'
 // import "./user/style/UserRegister.scss"
 
