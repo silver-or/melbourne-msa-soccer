@@ -37,7 +37,7 @@ const Table = ({columns, colspan, data}) => {
     )
 }
 
-export default function UserList(){
+export default function GetUsers(){
     const columns = ["사용자ID", "이름", "이메일", "전화번호", "생년월일", "주소"]
     const [data, setData] = useState([])
     const proxy = 'http://localhost:5000'

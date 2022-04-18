@@ -19,11 +19,11 @@ interface TodoAddSuccessType{
 
 function* addTask(task: TodoAddType){
     try{
-        alert('진행 3: saga내부 join 성공'+ JSON.stringify(task))
+        alert('진행 3 : saga 내부 join 성공' + JSON.stringify(task))
         const response : TodoAddSuccessType = yield postTodo(task.payload)
         yield put(todoActions.addTaskSuccess(response))
     } catch(error){
-        alert('진행 3: saga내부 join 실패')
+        alert('진행 3 : saga 내부 join 실패')
         yield put(todoActions.addTaskFailure(error))
     }
 }

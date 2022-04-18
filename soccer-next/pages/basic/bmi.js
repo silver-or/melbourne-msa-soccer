@@ -1,6 +1,7 @@
 import React, {useState} from "react" // 경량화 (필요한 것만 뽑아냄)
 import axios from "axios"
 import {BasicLayout} from "../basic/index"
+import tableStyles from '../common/styles/table.module.css'
 
 export default function Bmi(){
     const proxy = 'http://localhost:5000'
@@ -23,20 +24,48 @@ export default function Bmi(){
     
     return (<>
         <BasicLayout>
-            <h1>Bmi</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label><b>이름</b></label> <br/>
-                    <input type="text" name="name" onChange={handleChange}/> <br/>
-                    <label><b>키</b></label> <br/>
-                    <input type="text" name="height" onChange={handleChange}/> <br/>
-                    <label><b>몸무게</b></label> <br/>
-                    <input type="text" name="weight" onChange={handleChange}/>
-                </div>
-                <div>
-                    <input type="submit" value="BMI 체크"/> &nbsp;
-                    <button>취소</button>
-                </div>
+            <form action="" onSubmit={handleSubmit} >
+                <table className={tableStyles.table}>
+                    <thead>
+                        <tr>
+                            <th colSpan={2}><h2>BMI</h2></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label htmlFor="">이름</label>
+                            </td>
+                            <td>
+                                <input type="text" name="name" onChange={handleChange} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label htmlFor="">키</label>
+                            </td>
+                            <td>
+                            <input type="text" name="height" onChange={handleChange} />
+                            </td>
+                        </tr>
+                        <tr >
+                            <td>
+                                <div>
+                                    <label htmlFor="">몸무게</label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="text" name="weight" onChange={handleChange} /><br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}><input type="submit" value="BMI 체크" /></td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>결과 : <span id="result-span"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </form>
         </BasicLayout>
     </>)

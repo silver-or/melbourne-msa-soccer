@@ -1,33 +1,29 @@
 .table {
-  border-collapse: separate;
-  border-spacing: 1.5px;
+  margin: 10px 0;
+  font-size: 15px;
+  width: 900px;
+  border: 1px solid black;
+}
+
+.table thead th {
+  background-color: white;
+  color: black;
   text-align: center;
-  line-height: 1.5;
-  margin: 10px 10px;
-  width: 1000px;
-  table-layout:fixed;
-  word-break : break-all ;
-  height : auto;
-}
-
-.td {
-  border:1px solid rgb(181, 78, 150);
-}
-
-.tr {
-  width: 160px;
-  padding: 10px;
   font-weight: bold;
-  vertical-align: top;
-  border-bottom: 1px solid #ccc;
-  background: #F3F6F7;
+  height: 20px;
+  border: 1px solid black;
 }
 
-.th {
-  width: 160px;
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: top;
-  color: #fff;
-  background: #CE4869 ;
+.table td {
+  padding: 12px 15px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.table tbody tr {
+  border: 1px solid black;
+}
+
+.table tbody tr:last-of-type {
+  border: 1px solid black;
 }

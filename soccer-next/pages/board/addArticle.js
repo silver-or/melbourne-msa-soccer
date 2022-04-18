@@ -5,7 +5,7 @@ import axios from "axios"
 import style from "../board/styles/board-form.module.css"
 import {useDispatch} from "react-redux";
 
-export default function Board(){
+export default function AddArticle(){
     const proxy = 'http://localhost:5000'
     const dispatch = useDispatch()
     const [inputs, setInputs] = useState({

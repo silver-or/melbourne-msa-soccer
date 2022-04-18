@@ -18,18 +18,18 @@ const Table = ({columns, colspan, data}) => (<>
                 <td colSpan={colspan} className={tableStyles.td}>일정이 없습니다.</td>
             </tr>
             : data.map((todo) => (
-                <tr className={tableStyles.tr} key={todo.label}>
-                    <td className={tableStyles.td}>
-                        <a>{todo.label}</a>
-                    </td>
+                <tr className={tableStyles.tr} key={todo.userid}>
+                    <td className={tableStyles.td}>{todo.userid}</td>
+                    <td className={tableStyles.td}>{todo.task}</td>
+                    <td className={tableStyles.td}>{todo.completed}</td>
                 </tr>
             ))}
         </tbody>
     </table>
 </>)
 
-export default function TodoList(){
-    const columns = ["label"]
+export default function GetTodos(){
+    const columns = ["사용자 ID", "일정", "완료 여부"]
     const [data, setData] = useState([])
     const proxy = 'http://localhost:5000'
     useEffect(() => {
