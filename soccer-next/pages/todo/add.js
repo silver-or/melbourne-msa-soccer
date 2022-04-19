@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import tableStyles from '../common/styles/table.module.css'
 import { todoActions } from '../../redux/reducers/todoReducer.ts'
-export default function AddTodo() {
+export default function Add() {
     const [todo, setTodo] = useState({
         userid: 'laura817', task:'', completed:'F'
     })

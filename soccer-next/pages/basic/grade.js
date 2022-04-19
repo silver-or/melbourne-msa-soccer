@@ -1,5 +1,4 @@
 import React, {useState} from "react"
-import {BasicLayout} from "../basic";
 import axios from "axios";
 
 export default function Grade(){
@@ -22,24 +21,22 @@ export default function Grade(){
     }
     
     return (<>
-        <BasicLayout>
-            <h1>성적표</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label><b>이름</b></label> <br/>
-                    <input name="name" onChange={handleChange}/> <br/>
-                    <label><b>국어 성적</b></label> <br/>
-                    <input name="kor" onChange={handleChange}/> <br/>
-                    <label><b>영어 성적</b></label> <br/>
-                    <input name="eng" onChange={handleChange}/> <br/>
-                    <label><b>수학 성적</b></label> <br/>
-                    <input name="math" onChange={handleChange}/>
-                </div>
-                <div>
-                    <button>결과 확인하기</button> &nbsp;
-                    <button>취소</button>
-                </div>
-            </form>
-        </BasicLayout>
+        <h1>성적표</h1>
+        <form onSubmit={handleSubmit}>
+            <div>
+                <label><b>이름</b></label> <br/>
+                <input name="name" onChange={handleChange}/> <br/>
+                <label><b>국어 성적</b></label> <br/>
+                <input name="kor" onChange={handleChange}/> <br/>
+                <label><b>영어 성적</b></label> <br/>
+                <input name="eng" onChange={handleChange}/> <br/>
+                <label><b>수학 성적</b></label> <br/>
+                <input name="math" onChange={handleChange}/>
+            </div>
+            <div>
+                <button>결과 확인하기</button> &nbsp;
+                <button>취소</button>
+            </div>
+        </form>
     </>)
 }

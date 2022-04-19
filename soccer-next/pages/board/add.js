@@ -1,11 +1,11 @@
 // 사용자에게 유의미한 data를 받아서 dataset 만들기
 import React, {useState} from "react";
-import {addBoard} from "../../redux/reducers/boardReducer.ts"
+import {addArticle} from "../../redux/reducers/boardReducer.ts"
 import axios from "axios"
 import style from "../board/styles/board-form.module.css"
 import {useDispatch} from "react-redux";
 
-export default function AddArticle(){
+export default function Add(){
     const proxy = 'http://localhost:5000'
     const dispatch = useDispatch()
     const [inputs, setInputs] = useState({
@@ -31,7 +31,7 @@ export default function AddArticle(){
         <div className={style.container}>
             <form action="" onSubmit={e => {
                 e.preventDefault()
-                if(inputs) dispatch(addBoard(inputs))
+                if(inputs) dispatch(addArticle(inputs))
             }}>
                 <div className={style.row}>
                     <div className={style.col25}>

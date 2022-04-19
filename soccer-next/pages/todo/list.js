@@ -1,6 +1,5 @@
 import axios from "axios"
 import tableStyles from "../common/styles/table.module.css"
-import Link from "next/link"
 import {useEffect, useState} from "react"
 
 const Table = ({columns, colspan, data}) => (<>
@@ -28,7 +27,7 @@ const Table = ({columns, colspan, data}) => (<>
     </table>
 </>)
 
-export default function GetTodos(){
+export default function List(){
     const columns = ["사용자 ID", "일정", "완료 여부"]
     const [data, setData] = useState([])
     const proxy = 'http://localhost:5000'
@@ -45,7 +44,7 @@ export default function GetTodos(){
             {data.length} tasks remaining
         </h2>
         <div className={tableStyles.td}>
-            <Table columns={columns} colspan={1} data={data}/>
+            <Table columns={columns} colspan={3} data={data}/>
         </div>
     </>)
 }

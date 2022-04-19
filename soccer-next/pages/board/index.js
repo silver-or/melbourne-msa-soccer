@@ -1,4 +1,4 @@
-export {default as addArticle} from 'board/addArticle'
-export {default as getArticles} from 'board/getArticles'
-export {default as modifyArticle} from 'board/modifyArticle'
-export {default as removeArticle} from 'board/removeArticle'
+export {default as Add} from '../board/add'
+export {default as List} from './list'
+export {default as Modify} from '../board/modify'
+export {default as Remove} from '../board/remove'

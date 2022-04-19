@@ -30,7 +30,7 @@ const Table = ({columns, colspan, data}) => {
     )
 }
 
-export default function GetArticles(){
+export default function List(){
     const columns = ["passengerId", "name", "teamId", "subject"]
     const [data, setData] = useState([])
     const proxy = 'http://localhost:5000'

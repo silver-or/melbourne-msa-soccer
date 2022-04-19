@@ -2,6 +2,9 @@ require('dotenv').config() // 전역 // dotenv : 환경
 const cors = require('cors')
 const express = require('express')
 const app = express()
+const tokenRouter = require('./app/routes/token')
+app.use('/token', tokenRouter)
+
 const {PORT, MONGO_URI} = process.env
 
 app.use(express.static('public'))
