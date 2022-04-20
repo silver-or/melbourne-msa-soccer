@@ -1,5 +1,5 @@
 const {signup, userlist, login} = require('../controllers/user.controller')
-const { verifyToken } = require('../routes/middlewares');
+const { verifyToken } = require('./middlewares');
 
 module.exports = x => {
     console.log(`user.route 로 들어옴`)
