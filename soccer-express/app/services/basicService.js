@@ -1,4 +1,5 @@
-exports.getBmi = (payload) => {
+export default function BasicService(){
+  const calcBmi = (payload) => {
     const {name, height, weight} = payload
     let _height = Number(height) / 100
     let _weight = Number(weight)
@@ -14,10 +15,11 @@ exports.getBmi = (payload) => {
       result.bmi = "Obese"
     else
       result.bmi = "Overweight"
+    console.log(`계산 결과 : ${JSON.stringify(result)}`)
     return result
-}
+  }
 
-exports.calculate = (payload) => {
+  const calculate = (payload) => {
     const {num1, opcode, num2} = payload
     let _num1 = Number(num1)
     let _num2 = Number(num2)
@@ -30,18 +32,26 @@ exports.calculate = (payload) => {
         case '%' : result.res = _num1 % _num2; break;
     }
     return result
-}
-    
-exports.getGrade = (payload) => {
-    const {name, kor, eng, math} = payload
-    let _kor = Number(kor)
-    let _eng = Number(eng)
-    let _math = Number(math)
-    let avg = (_kor + _eng +_math) / 3.0
-    const result = {name, kor, eng, math}
-    if (avg >= 60.0)
-        result.res = "합격"
-    else
-        result.res = "불합격"
-    return result
+  }
+
+  return {
+    getBmi(req, _res){
+      const {name, height, weight} = req.body
+      console.log(`넘어온 JSON 값 : ${JSON.stringify(req.body)}`)
+      console.log(`이름 : ${name}`)
+      console.log(`키 : ${height}`)
+      console.log(`몸무게 : ${weight}`)
+      const json = calcBmi({name, height, weight})
+      console.log(`계산 결과 : ${JSON.stringify(json)}`)
+      return json
+    },
+
+    getCalc(req, _res){
+      const {num1, opcode, num2} = req.body
+      console.log(`넘어온 JSON 값 : ${JSON.stringify(req.body)}`)
+      const json = calculate({num1, opcode, num2})
+      console.log(`계산 결과 : ${JSON.stringify(json)}`)
+      return json
+    }
+  }
 }

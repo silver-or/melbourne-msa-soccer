@@ -14,9 +14,16 @@ export default function Bmi(){
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post(proxy + '/api/basic/bmi', inputs)
+        axios.post(proxy + '/basic/bmi', inputs)
         .then(res => {
             alert(`${JSON.stringify(res.data)}`)
+            const bmi = res.data
+            document.getElementById('result-span').innerHTML = `
+                <h3>이름 : ${bmi.name}</h3>
+                <h3>키 : ${bmi.height} cm</h3>
+                <h3>몸무게 : ${bmi.weight}kg</h3>
+                <h3>BMI결과 : ${bmi.bmi}</h3>
+            `
         })
         .catch(err => alert(err))
     }

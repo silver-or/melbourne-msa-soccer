@@ -14,7 +14,7 @@ export default function Calc(){
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post(proxy + `/api/basic/calc`, inputs)
+        axios.post(proxy + `/basic/calc`, inputs)
         .then(res => {
             alert(`${JSON.stringify(res.data)}`)
         })

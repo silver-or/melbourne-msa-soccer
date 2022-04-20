@@ -1,79 +1,56 @@
-// 사용자에게 유의미한 data를 받아서 dataset 만들기
-import React, {useState} from "react";
-import {addArticle} from "../../redux/reducers/boardReducer.ts"
-import axios from "axios"
-import style from "../board/styles/board-form.module.css"
-import {useDispatch} from "react-redux";
-
-export default function Add(){
-    const proxy = 'http://localhost:5000'
+import React, {useState} from 'react'
+import tableStyles from '../common/styles/table.module.css'
+import { useDispatch } from 'react-redux'
+import { addBoard } from '../../redux/reducers/boardReducer.ts'
+export default function Board(){
     const dispatch = useDispatch()
-    const [inputs, setInputs] = useState({
-        teamId : 'K09'
-    })
+    const [inputs, setInputs] = useState({})
 
-    const onChange = (e) => { // e는 argument → 변하지 않음, 변한다면 e.preventDefault(), e.target이 제대로 작동되지 않을 수 있음
-        e.preventDefault()
-        const {name, value} = e.target
-        setInputs({...inputs, [name] : value})   
+    const handleChange = e => {
+       const {name, value} = e.target 
+       setInputs({...inputs, [name]: value})
     }
 
-    const onSubmit = e => {
+   
+    return (<form onSubmit={e => {
         e.preventDefault()
-        axios.post(proxy + '/api/board/write', inputs) // param은 callback → 상태 (inputs) 변경
-        .then(res => {
-            alert(`${JSON.stringify(res.data)}`)
-        })
-        .catch(err => alert(err))
-    }
-
-    return(<>
-        <div className={style.container}>
-            <form action="" onSubmit={e => {
-                e.preventDefault()
-                if(inputs) dispatch(addArticle(inputs))
-            }}>
-                <div className={style.row}>
-                    <div className={style.col25}>
-                        <label className={style.label} htmlFor="title">글 제목</label>
-                    </div>
-                    <div className={style.col75}>
-                        <input className={style.inputText} type="text" id="title" name="title" placeholder="글 제목 입력" onChange={onChange}/>
-                    </div>
-                </div>
-                <div className={style.row}>
-                    <div className={style.col25}>
-                        <label className={style.label} htmlFor="name">Name</label>
-                    </div>
-                    <div className={style.col75}>
-                        <input className={style.inputText} type="text" id="name" name="name" placeholder="사용자 이름 입력" onChange={onChange}/>
-                    </div>
-                </div>
-                <div className={style.row}>
-                    <div className={style.col25}>
-                        <label className={style.label} htmlFor="team">Team</label>
-                    </div>
-                    <div className={style.col75}>
-                        <select id="teamId" name="teamId" onChange={onChange}>
-                            <option value="K09" selected>서울 FC서울</option>
-                            <option value="K04">인천 유나이티드</option>
-                            <option value="K02">수원 삼성블루윙즈</option>
+        
+        if(inputs) dispatch(addBoard(inputs))
+    }}>
+        <table className={tableStyles.table}>
+            <thead>
+                <tr>
+                    <th colSpan={2}><h2>게시판 글쓰기</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><label>제 목</label></td>
+                    <td><input type="text" onChange={handleChange} id="title" name="title" placeholder="제목 입력"/></td>
+                </tr>
+                <tr>
+                    <td><label>작성자</label></td>
+                    <td><input type="text" onChange={handleChange} id="name" name="name" placeholder="게시글 작성자 이름 입력"/></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor="team">주제</label></td>
+                    <td>
+                        <select id="teamId" name="teamId" onChange={handleChange}>
+                            <option value="">주제 선택</option>
+                            <option value="K09">영화</option>
+                            <option value="K02">도서</option>
+                            <option value="K04">여행</option>
                         </select>
-                    </div>
-                </div>
-                <div className={style.row}>
-                    <div className={style.col25}>
-                        <label className={style.label} htmlFor="subject">Subject</label>
-                    </div>
-                    <div className={style.col75}>
-                        <textarea className={style.inputText} id="subject" name="subject" style={{height:200 + "px"}} onChange={onChange}/>
-                    </div>
-                </div>
-                <br/>
-                <div className={style.row}>
-                    <input className={style.inputSubmit} type="submit" value="Submit"/>
-                </div>
-            </form>
-        </div>
-    </>)
+                    </td>
+                </tr>
+                <tr>
+                    <td><label htmlFor="subject">내용</label></td>
+                    <td><input type="textarea"  id="subject" name="subject" onChange={handleChange} style={{height:200 + "px"}}></input></td>
+                </tr>
+                <tr>
+                    <td colSpan={2}><input type="submit" value="Submit"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>)
 }

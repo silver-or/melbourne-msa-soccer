@@ -17,9 +17,10 @@ export default function Home() {
           </tr>
       </thead>
       <tbody>
-          <tr >
-          <td>
-              <div id="timeZone"></div></td>
+          <tr>
+            <td>
+              <div id="timeZone"></div>
+            </td>
           </tr>
       </tbody>
   </table>
