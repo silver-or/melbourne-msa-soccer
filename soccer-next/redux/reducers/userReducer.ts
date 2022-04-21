@@ -24,27 +24,31 @@ const initialState: UserState = {
 }
 
 const userSlice = createSlice({
-    name : 'users',
+    name: 'users',
     initialState,
-    reducers : {
-        joinRequest(state: UserState, payload){ // 처음엔 initialState, 이후 draft state로 진화
-            alert('진행 2 : 리듀서 내부')
-            state.loading = true
+    reducers: {
+        joinRequest(state: UserState, payload){
+            state.loading = true; 
         },
-        joinSuccess(state: UserState, {payload}){
+        joinSuccess(state: UserState, {payload}){ 
             state.data = [...state.data, payload]
+            state.loading = false; 
+        },
+        joinFailure(state: UserState, {payload}){ 
+            state.data = payload;
             state.loading = false;
         },
-        joinFailure(state: UserState, {payload}){
+        loginRequest(state: UserState, payload){
+            alert('진행 2 : 로그인 리듀서 내부 ') 
+            state.loading = true; 
+        },
+        loginSuccess(state: UserState, {payload}){ 
             state.data = [...state.data, payload]
             state.loading = false;
+            
         },
-        exist(state: UserState, {payload}){
-            state.data = [...state.data, payload]
-            state.loading = false;
-        },
-        loginRequest(state: UserState, {payload}){
-            state.data = [...state.data, payload]
+        loginFailure(state: UserState, {payload}){ 
+            state.data = payload;
             state.loading = false;
         }
     }

@@ -13,7 +13,10 @@ export default function Join(){
         const {name, value} = e.target;
         setUser({...user, [name]: value})
     }
-    return <><h1>회원가입폼</h1>
+    const handleClick = e => {
+      window.location.href = "./login"
+    }
+    return <>
     <form onSubmit={
         e => {
             e.preventDefault()
@@ -62,7 +65,7 @@ export default function Join(){
               <td><input type="text" name='address' onChange={handleChange}/></td>
           </tr>
           <tr>
-              <td colSpan={2}><button type="submit">회원가입</button><br /></td>
+              <td colSpan={2}><button type="submit" onClick={handleClick}>회원가입</button><br/></td>
           </tr>
         </tbody>
       </table>
