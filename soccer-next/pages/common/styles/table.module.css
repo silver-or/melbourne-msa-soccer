@@ -27,3 +27,13 @@
 .table tbody tr:last-of-type {
   border: 1px solid black;
 }
+
+.nav {
+  margin: 0 auto;
+  letter-spacing: 5rem;
+  font-size: 15px;
+  width: 900px;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid #b9ceac;
+}

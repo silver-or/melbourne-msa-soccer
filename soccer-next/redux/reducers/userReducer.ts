@@ -45,7 +45,6 @@ const userSlice = createSlice({
         loginSuccess(state: UserState, {payload}){ 
             state.data = [...state.data, payload]
             state.loading = false;
-            
         },
         loginFailure(state: UserState, {payload}){ 
             state.data = payload;

@@ -1,14 +1,14 @@
 import React, {useState} from 'react'
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import tableStyles from "../common/styles/table.module.css"
 import MenuItem from '@mui/material/MenuItem';
+
 export default function Nav(){
   const basicUrls = ["/basic/counter","/basic/calc","/basic/bmi"]
   const basicSubTitle = ["카운터","계산기","BMI"]
-  const userUrls = ["/user/join","/user/login","/user/logout","/user/profile","/user/modify","/user/withdraw","/user/list"]
-  const userSubTitle = ["회원가입","로그인","로그아웃","프로필","회원수정","회원탈퇴","회원목록"]
   const todoUrls = ["/todo/add","/todo/list","/todo/modify","/todo/remove"]
   const todoSubTitle = ["할일등록","할일목록","할일수정","할일삭제"]
   const gameUrls = ["/game/add","/game/list","/game/modify","/game/remove"]
@@ -17,16 +17,30 @@ export default function Nav(){
   const teamSubTitle = ["팀등록","팀목록","팀수정","팀삭제"]
   const boardUrls = ["/board/add","/board/list","/board/modify","/board/remove"]
   const boardSubTitle = ["글등록","글목록","글수정","글삭제"]
-  
+
+  let userUrls = []
+  let userSubTitle = []
+
+  if (typeof window !== 'undefined') {
+    if(localStorage.getItem("loginUser")) {
+      userUrls = ["/user/logout","/user/profile","/user/modify","/user/withdraw","/user/list"]
+      userSubTitle = ["로그아웃","프로필","회원수정","회원탈퇴","회원목록"]
+    } else {
+        userUrls = ["/user/join","/user/login"]
+        userSubTitle = ["회원가입","로그인"]
+    }
+  }
+
   return (
-    <table className={tableStyles.table}>
+    <table className={tableStyles.nav}>
       <tr>
-      <td><SubMenu title={"기본"} urls={basicUrls} subTitles={basicSubTitle}/>
-        <SubMenu title={"사용자"} urls={userUrls} subTitles={userSubTitle}/>
-        <SubMenu title={"투두"} urls={todoUrls} subTitles={todoSubTitle}/>
-        <SubMenu title={"게임"} urls={gameUrls} subTitles={gameSubTitle}/>
-        <SubMenu title={"팀"} urls={teamUrls} subTitles={teamSubTitle}/>
-        <SubMenu title={"게시판"} urls={boardUrls} subTitles={boardSubTitle}/>
+        <td>
+          <SubMenu title={"기본"} urls={basicUrls} subTitles={basicSubTitle}/>
+          <SubMenu title={"사용자"} urls={userUrls} subTitles={userSubTitle}/>
+          <SubMenu title={"투두"} urls={todoUrls} subTitles={todoSubTitle}/>
+          <SubMenu title={"게임"} urls={gameUrls} subTitles={gameSubTitle}/>
+          <SubMenu title={"팀"} urls={teamUrls} subTitles={teamSubTitle}/>
+          <SubMenu title={"게시판"} urls={boardUrls} subTitles={boardSubTitle}/>
         </td>
       </tr>
     </table>
@@ -46,6 +60,7 @@ const SubMenu = (props) => {
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
+        color="success"
         onClick={handleClick}
       >
         {props.title}
@@ -59,8 +74,8 @@ const SubMenu = (props) => {
           'aria-labelledby': 'basic-button',
         }}
       >
-         {props.urls.map(function(url, i){
-            return <MenuItem onClick={handleClose}><Link href={url} key={i}>{props.subTitles[i]}</Link></MenuItem>
-          })}
+      {props.urls.map(function(url, i){
+        return <MenuItem onClick={handleClose}><Link href={url} key={i} underline="none" color="inherit">{props.subTitles[i]}</Link></MenuItem>
+      })}
       </Menu></>
 }

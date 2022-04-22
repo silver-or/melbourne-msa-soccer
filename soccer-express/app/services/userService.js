@@ -21,7 +21,6 @@ export default function UserService() {
                     // res
                     //     .status(200)
                     //     .json({ok: 'ok'})
-
                 }
                 console.log('회원가입 성공')
             })

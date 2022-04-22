@@ -33,21 +33,21 @@ interface UserLoginSuccessType{
 }
 
 function* join(user: UserJoinType){
-    try {
+    try{
         const response : UserJoinSuccessType = yield joinApi(user.payload)
         yield put(userActions.joinSuccess(response))
-    } catch (error) {
+    }catch(error) {
         yield put(userActions.joinFailure(error))
     }
 }
 
 function* login(login: UserLoginType){
-    try {
+    try{
         alert('진행 3 : saga 내부 login 요청' + JSON.stringify(login))
         const response : UserLoginSuccessType = yield loginApi(login.payload)
         yield put(userActions.loginSuccess(response))
         window.location.href = '/'
-    } catch (error) {
+    }catch(error) {
         alert('진행 3 : saga 내부 login 실패') 
         yield put(userActions.loginFailure(error))
         window.location.href = '/user/login'
